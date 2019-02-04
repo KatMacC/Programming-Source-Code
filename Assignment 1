@@ -1,0 +1,196 @@
+/* The declaration of libraries, variables and constants */
+#include <stdio.h>
+#include <math.h>
+char chosen;
+int done=1;
+float a;
+float b;
+float c;
+float d;
+float real, img;
+float po1mag;
+float po1angle;
+float po2mag;
+float po2angle;
+float polarmag;
+float polarangle;
+const double pi = 3.1415926;
+
+/* The options for the user to decide the function - a case and switch system */
+
+int main(void) {
+do {
+ printf("Main Menu\n\n");
+ printf("A: Add two numbers\n");
+ printf("B: Subtract two numbers\n");
+ printf("C: Multiply two numbers\n");
+ printf("D: Divide two numbers\n");
+ printf("E: Add two complex numbers\n");
+ printf("F: Subtract two complex numbers \n");
+ printf("G: Multiply two complex numbers \n");
+ printf("H: Divide two complex numbers \n");
+ printf("Q: Quit the program");
+ printf("\n\n Choose option: ");
+ /* retrieving the user choice and inputting it into the switch */
+ chosen= getchar();
+ switch(chosen) {
+ /* Addition of two real numbers */
+ case 'A':
+{
+ system("cls");								/*Clearing the screen*/
+ printf("You chose to add two numbers\n"); 	/*requesting the user to input their numbers*/
+ printf("\n Enter your first number:");
+ scanf("%f",&a); 							/*Scanning this number and assigning it to a label*/
+ printf("\n Enter your second number:");
+ scanf("%f",&b);
+ c=a+b;										/*Carrying out the actual calculation for this section*/
+ printf("\n Your answer is %.0f",c);		/*Printing out the result for the user to see*/
+ return(0);
+ }
+ /* Subtraction of two real numbers */
+ case 'B': 
+ {
+ system("cls");
+ printf("You chose to subtract two numbers\n");
+ printf("\n Enter your first number:");
+ scanf("%f",&a);
+ printf("\n Enter your second number:");
+ scanf("%f",&b);
+ c=a-b;
+ printf("\n Your answer is %.0f",c);
+ return(0);
+ }
+ /* Multiplication of two real numbers */
+ case 'C': 
+ {
+ system("cls");
+ printf("You chose to multiply two numbers\n");
+ printf("\n Enter your first number:");
+ scanf("%f",&a);
+ printf("\n Enter your second number:");
+ scanf("%f",&b);
+ c=a*b;
+ printf("\n Your answer is %.0f",c);
+ return(0);
+ }
+ /* Division of two real numbers */
+ case 'D': 
+ {
+ system("cls");
+ printf("You chose to divide two numbers\n");
+ printf("\n Enter your first number:");
+ scanf("%f",&a);
+ printf("\n Enter your second number:");
+ scanf("%f",&b);
+ c=a/b;
+ printf("\n Your answer is %.2f",c);
+ return(0);
+ }
+ /* Addition of two complex numbers */
+ case 'E': 
+ {
+ system("cls");
+ printf("You chose to add two complex numbers. They are in the form a + bi \n");
+ printf("\n Enter your first real number, a:");
+ scanf("%f",&a);
+ printf("\n Enter your first imaginary number, b:");
+ scanf("%f",&b);
+ printf("\n Enter your second real number, c:");
+ scanf("%f",&c);
+ printf("\n Enter your second imaginary number, d:");
+ scanf("%f",&d);
+ real = a + c; 								/*calculation for the real part of the complex number*/
+ img = b + d;								/*calculation for the imaginary part of the complex number*/
+ 		
+		if ( img >= 0)						/*an if statement to determine the shown sign for the imaginary number part of the printed result*/
+        printf("Sum of two complex numbers = %.0f + %.0fi",real,img);
+		else
+		printf("Sum of two complex numbers = %.0f %.0fi",real,img);
+		
+ return(0);
+ }
+ /* Subtraction of two complex numbers */
+ case 'F': 
+ {
+ system("cls");
+ printf("You chose to subtract two complex numbers. They are in the form a + bi \n");
+ printf("\n Enter your first real number, a:");
+ scanf("%f",&a);
+ printf("\n Enter your first imaginary number, b:");
+ scanf("%f",&b);
+ printf("\n Enter your second real number, c:");
+ scanf("%f",&c);
+ printf("\n Enter your second imaginary number, d:");
+ scanf("%f",&d);
+  real = a - c;
+  img = b - d;
+ 
+      if ( img >= 0 )
+      printf("Difference of two complex numbers = %.0f + %.0fi",real,img);
+	  else
+	  printf("Difference of two complex numbers = %.0f %.0fi",real,img);
+      
+	return(0);
+}
+/* Multiplication of two complex numbers */
+ case 'G': 
+ {
+ system("cls");
+ printf("You chose to multiply two complex numbers. They are in the form a + bi \n");
+ printf("\n Enter your first real number, a:");
+ scanf("%f",&a);
+ printf("\n Enter your first imaginary number, b:");
+ scanf("%f",&b);
+ printf("\n Enter your second real number, c:");
+ scanf("%f",&c);
+ printf("\n Enter your second imaginary number, d:");
+ scanf("%f",&d);
+ po1mag= sqrt((a*a)+(b*b));					/*Calculating the magnitude for the first polar number*/
+ po1angle=atan(b/a)*(180/pi);				/*Calculating the angle for the first polar number and converting it into degrees*/
+ po2mag= sqrt((c*c)+(d*d));					/*Calculating the magnitude for the second polar number*/
+ po2angle=atan(d/c)*(180/pi);				/*Calculating the angle for the first polar number and converting it into degrees*/
+ polarmag=po1mag*po2mag;					/*Multiplying the magnitudes for the final result*/
+ polarangle=(po1angle+po2angle);			/*Adding the angles for the final result*/
+ printf("Multiplication of two complex numbers in polar form is %.0f < %.2f degrees",polarmag,polarangle);
+	return(0);
+}
+ /* Dividing two complex numbers */
+ case 'H': 
+ {
+ system("cls");
+ printf("You chose to divide two complex numbers. They are in the form a + bi \n");
+ printf("\n Enter your first real number, a:");
+ scanf("%f",&a);
+ printf("\n Enter your first imaginary number, b:");
+ scanf("%f",&b);
+ printf("\n Enter your second real number, c:");
+ scanf("%f",&c);
+ printf("\n Enter your second imaginary number, d:");
+ scanf("%f",&d);
+  { if ( c == 0 || d == 0 )					/*Inserting a rule to disallow division by 0*/
+ printf("Division by 0 is not allowed.");
+      else
+      {
+ po1mag= sqrt((a*a)+(b*b));
+ po1angle= atan(b/a)*(180/pi);
+ po2mag= sqrt((c*c)+(d*d));
+ po2angle=atan(d/c)*(180/pi);
+ polarmag= po1mag/po2mag;
+ polarangle=po1angle-po2angle;
+ printf("Division of two complex numbers in polar form is %.0f < %.2f",polarmag,polarangle);
+ return(0);
+ }
+}
+}
+ /* The option to exit the program without performing a function*/
+ case 'Q': {done=0;break;}
+}
+}while(done !=0); 
+}
+void scroll(int lines) {
+int i;
+for(i=0;i<lines;i++) {
+ printf("\n");
+}
+}
+
