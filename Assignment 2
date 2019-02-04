@@ -1,0 +1,314 @@
+//Pins and frequency
+const int ledPin = 7;
+const int tonefreq = 523;
+
+// constants for tone and rest durations
+const int unitlength = 150;
+const int dotlength = unitlength;
+const int dashlength = unitlength * 3;
+// inter-element gap - between each dot or dash of a letter
+const int inter = unitlength; 
+// letter gap is 3 unit lengths - includes inter gap from last letter
+const int lgap = unitlength * 2; // inter-letter gap
+// word gap is 5 dots - includes the inter gap that came previously
+const int wgap = unitlength * 4; //inter-word gap
+
+
+void setup() 
+{
+  pinMode(ledPin, OUTPUT);
+  Serial.begin(9600);
+  Serial.println("Please only enter capitals");
+}
+
+void loop()
+{ 
+  char thischar;
+  if (Serial.available())
+  {
+    // read a single character
+    thischar = Serial.read();
+    if (thischar>='A' && thischar<='Z')
+    //allow numbers
+    if (thischar>='0' && thischar<='9')
+    {
+      thischar=' '; 
+    }
+    words(thischar);
+    delay(lgap);
+  }
+  delay(wgap);
+}
+
+void dot()
+{
+  // LED
+  digitalWrite(ledPin, HIGH);
+  delay(dotlength);
+  // LED
+  digitalWrite(ledPin, LOW);
+  delay(inter);
+}
+
+void dash()
+{
+  // LED
+  digitalWrite(ledPin, HIGH);
+  delay(dashlength);
+    // LED
+  digitalWrite(ledPin, LOW);
+  delay(inter);
+}
+
+void words(char words)
+{
+  // letters are in alphabetical order with numbers following
+  switch(words)
+  {
+  case 'A':
+    dot();
+    dash();
+    Serial.print(".- ");
+    return;
+  case 'B':
+    dash();
+    dot();
+    dot();
+    dot();
+    Serial.print("-... ");
+    return;
+  case 'C':
+    dash();
+    dot();
+    dash();
+    dot();
+    Serial.print("-.-. ");
+    return;
+  case 'D':
+    dash();
+    dot();
+    dot();
+    Serial.print("-.. ");
+    return;
+  case 'E':
+    dot();
+    Serial.print(". ");
+    return; 
+  case 'F':
+    dot();
+    dot();
+    dash();
+    dot();
+    Serial.print("..-. ");
+    return;
+  case 'G':
+    dash();
+    dash();
+    dot();
+    Serial.print("--. ");
+    return;
+  case 'H':
+    dot();
+    dot();
+    dot();
+    dot();
+    Serial.print(".... ");
+    return;
+  case 'I':
+    dot();
+    dot();
+    Serial.print(".. ");
+    return;
+  case 'J':
+    dot();
+    dash();
+    dash();
+    dash();
+    Serial.print(".--- ");
+    return;
+  case 'K':
+    dash();
+    dot();
+    dash();
+    Serial.print("-.- ");
+    return;
+  case 'L':
+    dot();
+    dash();
+    dot();
+    dot();
+    Serial.print(".-.. ");
+    return;
+  case 'M':
+    dash();
+    dash();
+    Serial.print("-- ");
+    return;
+  case 'N':
+    dash();
+    dot();
+    Serial.print("-. ");
+    return;
+  case 'O':
+    dash();
+    dash();
+    dash();
+    Serial.print("--- ");
+    return;
+  case 'P':
+    dot();
+    dash();
+    dash();
+    dot();
+    Serial.print(".--. ");
+    return;
+  case 'Q':
+    dash();
+    dash();
+    dot();
+    dash();
+    Serial.print("--.- ");
+    return;
+  case 'R':
+    dot();
+    dash();
+    dot();
+    Serial.print(".-. ");
+    return;
+  case 'S':
+    dot();
+    dot();
+    dot();
+     Serial.print("... ");
+    return;
+  case 'T':
+    dash();
+     Serial.print("- ");
+    return; 
+  case 'U':
+    dot();
+    dot();
+    dash();
+     Serial.print("..- ");
+    return;
+  case 'V':
+    dot();
+    dot();
+    dot();
+    dash();
+     Serial.print("...- ");
+    return;
+  case 'W':
+    dot();
+    dash();
+    dash();
+     Serial.print(".-- ");
+    return; 
+  case 'X':
+    dash();
+    dot();
+    dot();
+    dash();
+     Serial.print("-..- ");
+    return;
+  case 'Y':
+    dash();
+    dot();
+    dash();
+    dash();
+     Serial.print("-.-- ");
+    return;
+  case 'Z':
+    dash();
+    dash();
+    dot();
+    dot();
+     Serial.print("--.. ");
+    return;
+  case ' ':
+    delay(wgap);
+    Serial.print("   ");
+    return; 
+  case '1':
+    dot();
+    dash();
+    dash();
+    dash();
+    dash();
+     Serial.print(".---- ");
+    return;
+  case '2':
+    dot();
+    dot();
+    dash();
+    dash();
+    dash();
+     Serial.print("..--- ");
+    return;
+  case '3':
+    dot();
+    dot();
+    dot();
+    dash();
+    dash();
+     Serial.print("...-- ");
+    return;
+  case '4':
+    dot();
+    dot();
+    dot();
+    dot();
+    dash();
+     Serial.print("....- ");
+    return;
+  case '5':
+    dot();
+    dot();
+    dot();
+    dot();
+    dot();
+     Serial.print("..... ");
+    return;
+  case '6':
+    dash();
+    dot();
+    dot();
+    dot();
+    dot();
+     Serial.print("-.... ");
+    return;
+  case '7':
+    dash();
+    dash();
+    dot();
+    dot();
+    dot();
+     Serial.print("--... ");
+    return;
+  case '8':
+    dash();
+    dash();
+    dash();
+    dot();
+    dot();
+     Serial.print("---.. ");
+    return;
+  case '9':
+    dash();
+    dash();
+    dash();
+    dash();
+    dot();
+     Serial.print("----. ");
+    return;
+  case '0':
+    dash();
+    dash();
+    dash();
+    dash();
+    dash();
+     Serial.print("----- ");
+    return;
+  
+  }
+}
