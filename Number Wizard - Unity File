@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class NumberWizard : MonoBehaviour {
 
-    int maximum = 1000;
-    int minimum = 1;
-    int guess = 500;
+    int maximum;
+    int minimum;
+    int guess;
 
     // Use this for initialization
     void Start() {
@@ -15,6 +15,9 @@ public class NumberWizard : MonoBehaviour {
 
     void StartGame ()
 	{
+	maximum = 1000;
+    	minimum = 1;
+    	guess = 500;
         Debug.Log("Welcome to Number Wizard!");
         Debug.Log("Please think of a number,");
         Debug.Log("Your highest number you can pick is: " + maximum);
